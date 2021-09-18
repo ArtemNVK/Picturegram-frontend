@@ -92,14 +92,22 @@ export const detailsUser = (userId) => async (dispatch, getState) => {
   }
 };
 
-export const followUser = (userId, userToFollowId) => async (dispatch) => {
+export const followUser = (userId, userToFollowId) => async (dispatch, getState) => {
   dispatch({ type: USER_FOLLOW_REQUEST });
+  const {
+    userSignin: { userInfo }
+  } = getState();
   try {
     const { data } = await Axios.put(
       `https://picturegram-backend.herokuapp.com/api/users/profile`,
       {
         userId,
         userToFollowId
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`
+        }
       }
     );
     localStorage.setItem('userInfo', JSON.stringify(data.user));

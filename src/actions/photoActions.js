@@ -51,14 +51,22 @@ export const getPhotosByUserId = (userId) => async (dispatch) => {
   }
 };
 
-export const getFeed = (following, userId, page) => async (dispatch) => {
+export const getFeed = (following, userId, page) => async (dispatch, getState) => {
   dispatch({ type: PHOTO_FEED_REQUEST, payload: following });
+  const {
+    userSignin: { userInfo }
+  } = getState();
   try {
     const { data } = await Axios.post(
       `https://picturegram-backend.herokuapp.com/api/photos/feed/${page}`,
       {
         following,
         _id: userId
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`
+        }
       }
     );
     dispatch({ type: PHOTO_FEED_SUCCESS, payload: data });
@@ -87,13 +95,21 @@ export const detailsPhoto = (photoId) => async (dispatch) => {
   }
 };
 
-export const likePhoto = (userId, id) => async (dispatch) => {
+export const likePhoto = (userId, id) => async (dispatch, getState) => {
   dispatch({ type: PHOTO_LIKE_REQUEST, payload: userId });
+  const {
+    userSignin: { userInfo }
+  } = getState();
   try {
     const { data } = await Axios.put(
       `https://picturegram-backend.herokuapp.com/api/photos/${id}/like`,
       {
         userId
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`
+        }
       }
     );
     dispatch({ type: PHOTO_LIKE_SUCCESS, payload: data });
@@ -106,13 +122,21 @@ export const likePhoto = (userId, id) => async (dispatch) => {
   }
 };
 
-export const commentPhoto = (comment, id) => async (dispatch) => {
+export const commentPhoto = (comment, id) => async (dispatch, getState) => {
   dispatch({ type: PHOTO_COMMENT_REQUEST, payload: comment });
+  const {
+    userSignin: { userInfo }
+  } = getState();
   try {
     const { data } = await Axios.put(
       `https://picturegram-backend.herokuapp.com/api/photos/${id}/add-comment`,
       {
         comment
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`
+        }
       }
     );
     dispatch({ type: PHOTO_COMMENT_SUCCESS, payload: data });
