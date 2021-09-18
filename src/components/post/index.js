@@ -36,7 +36,7 @@ export default function Post({ content, userId }) {
   }, [content]);
 
   return (
-    <div className="rounded col-span-4 border bg-white border-gray-primary mb-12 justify-center content-center">
+    <div className="rounded col-span-4 border bg-white border-gray-primary mb-12">
       <Header user={user} />
       <Image src={content.image} caption={content.caption} />
       <Actions
