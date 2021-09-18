@@ -94,7 +94,7 @@ export default function Timeline() {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
+        if (entries[0].isIntersecting && !photos?.noMoreResults) {
           setPage((prevPage) => prevPage + 1);
         }
       });
@@ -172,7 +172,7 @@ export default function Timeline() {
       {!feedPhotos && <Skeleton count={4} width={640} height={500} className="mb-5" />}
       {feedPhotos.length > 0 &&
         feedPhotos.map((content, index) => {
-          if (photos?.photos?.length === index + 1) {
+          if (feedPhotos?.length === index + 1) {
             return (
               <div ref={lastAsteroidElementRef} key={content._userId + index}>
                 <Post
