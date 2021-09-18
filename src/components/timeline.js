@@ -94,7 +94,7 @@ export default function Timeline() {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[-1].isIntersecting && !photos?.noMoreResults) {
+        if (entries[0].isIntersecting && !photos?.noMoreResults) {
           setPage((prevPage) => prevPage + 1);
         }
       });
