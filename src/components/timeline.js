@@ -9,6 +9,7 @@ import Axios from 'axios';
 import { createPhoto, getFeed } from '../actions/photoActions';
 import { detailsUser } from '../actions/userActions';
 import Post from './post';
+import ReactLoader from './loader';
 
 export default function Timeline() {
   const userSignin = useSelector((state) => state.userSignin);
@@ -168,9 +169,7 @@ export default function Timeline() {
         )}
       </div>
 
-      {!feedPhotos && !photos?.photos && (
-        <Skeleton count={4} width={640} height={500} className="mb-5" />
-      )}
+      {!feedPhotos && <Skeleton count={4} width={640} height={500} className="mb-5" />}
       {feedPhotos.length > 0 &&
         feedPhotos.map((content, index) => {
           if (photos?.photos?.length === index + 1) {
@@ -193,6 +192,7 @@ export default function Timeline() {
             );
           }
         })}
+      {loading && <ReactLoader />}
     </div>
   );
 }
