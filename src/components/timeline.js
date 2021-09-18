@@ -124,7 +124,7 @@ export default function Timeline() {
   }, [successCreate]);
 
   return (
-    <div className="col-span-3 lg:col-span-2">
+    <div className="col-span-3 lg:col-span-2 mb-20">
       <div className="mb-5">
         {displayPostButton && (
           <button

@@ -13,9 +13,7 @@ export default function Photos({ photos }) {
         ) : photos.length > 0 ? (
           photos.map((photo) => (
             <div key={photo._id} className="relative group">
-              <div className="flex justify-center content-center">
-                <img src={photo.image} alt={photo.caption} />
-              </div>
+              <img src={photo.image} alt={photo.caption} />
 
               <div className="absolute bottom-0 left-0 bg-gray-200 z-10 w-full justify-evenly items-center h-full bg-black-faded group-hover:flex hidden">
                 <p className="flex items-center text-white font-bold">
