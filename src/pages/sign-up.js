@@ -23,7 +23,7 @@ export default function SignUp() {
   };
 
   useEffect(() => {
-    document.title = 'Sign Up - Instagram';
+    document.title = 'Sign Up - Picturegram';
   }, []);
 
   useEffect(() => {

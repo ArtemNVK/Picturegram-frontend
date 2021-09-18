@@ -9,7 +9,7 @@ export default function Dashboard() {
   const { userInfo } = userSignin;
 
   useEffect(() => {
-    document.title = 'Instagram';
+    document.title = 'Picturegram';
   }, []);
 
   return (

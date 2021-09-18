@@ -21,11 +21,11 @@ export default function Login() {
   };
 
   useEffect(() => {
-    document.title = 'Login - Instagram';
+    document.title = 'Login - Picturegram';
   }, []);
 
   useEffect(() => {
-    document.title = 'Login - Instagram';
+    document.title = 'Login - Picturegram';
     if (userInfo) {
       history.push(ROUTES.DASHBOARD);
     }
